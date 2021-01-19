@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.col-sm-3{
+  width: 32.70%;
+  float: left;
+  background-color: rgb(184, 61, 85);
+  margin: 3px;
+  color: white;
+}
