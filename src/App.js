@@ -1,12 +1,12 @@
 import React,{ Component } from 'react';
 import './App.css';
-import Greet from './components/Greet'
+import Myfun from './components/Functional-component'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
-        <Greet />
+        <Myfun />
       </div>
     );
   }
