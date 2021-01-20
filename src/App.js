@@ -3,6 +3,7 @@ import './App.css';
 import Myfun from './components/Functional-component'
 import Tools from './components/Class-component'
 import Props from './components/Props'
+import Message from './components/State'
 
 class App extends Component{
   render(){
@@ -19,6 +20,8 @@ class App extends Component{
         <Props name = "Ahmed" email = "ahmed@gmail.com"></Props>
 
         <Tools name = "Rohan"></Tools>
+
+        <Message />
       </div>
     );
   }
