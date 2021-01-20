@@ -1,9 +1,10 @@
-import React,{ Component } from 'react';
-import './App.css';
+import React,{ Component } from 'react'
+import './App.css'
 import Myfun from './components/Functional-component'
 import Tools from './components/Class-component'
 import Props from './components/Props'
 import Message from './components/State'
+import Count from './components/SetState'
 
 class App extends Component{
   render(){
@@ -25,6 +26,8 @@ class App extends Component{
         <Message name = "Ha Ha Ha">
           <h3>Need A Chocolate</h3>
         </Message>
+
+        <Count />
       </div>
     );
   }
