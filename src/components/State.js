@@ -18,6 +18,8 @@ class StateMessage extends Component {
         return(
             <div>
                 <h1> {this.state.message} </h1>
+                <h1> {this.props.name} </h1>
+                {this.props.children}
                 <button onClick={() => this.changeMessage()} >Click</button>
             </div>
         )

@@ -22,6 +22,9 @@ class App extends Component{
         <Tools name = "Rohan"></Tools>
 
         <Message />
+        <Message name = "Ha Ha Ha">
+          <h3>Need A Chocolate</h3>
+        </Message>
       </div>
     );
   }
