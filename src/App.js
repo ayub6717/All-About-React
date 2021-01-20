@@ -10,7 +10,15 @@ class App extends Component{
       <div className="App">
         <Myfun />
         <Tools />
-        <Props />
+        
+        <Props name = "Ayub" email = "ayub@gmail.com">
+          <h4>Hey i'm Front-End developer</h4>
+          <p>Hey i'm Engineer</p>
+        </Props>
+        <Props name = "Rohan" email = "rohan@gmail.com"></Props>
+        <Props name = "Ahmed" email = "ahmed@gmail.com"></Props>
+
+        <Tools name = "Rohan"></Tools>
       </div>
     );
   }

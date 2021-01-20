@@ -5,8 +5,8 @@ render(){
 
 return <div style={{flot:"left"}}>
    <div className="row">
-      <div className="col-sm-3" style={{height:"300px"}}>
-         <h1>Hi</h1>
+      <div className="col-sm-3">
+         <h1>Hi {this.props.name}</h1>
       </div>      
       <div className="col-sm-3">
          <h1>Hello</h1>
