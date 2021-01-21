@@ -7,11 +7,13 @@ import Message from './components/State'
 import Count from './components/SetState'
 import Dont from './components/Distructuring'
 import Events from './components/Events'
+import ParentComponent from './components/ParentComponent'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <ParentComponent />
         <Myfun />
         <Tools />
         
@@ -33,6 +35,7 @@ class App extends Component{
 
         <Dont name = "Dhaka" area = "Shaymoli"></Dont>
         <Events></Events>
+        
       </div>
     );
   }
