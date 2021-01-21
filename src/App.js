@@ -8,11 +8,13 @@ import Count from './components/SetState'
 import Dont from './components/Distructuring'
 import Events from './components/Events'
 import ParentComponent from './components/ParentComponent'
+import ConditionalRendering from './components/Conditional-Rendering'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <ConditionalRendering />
         <ParentComponent />
         <Myfun />
         <Tools />
