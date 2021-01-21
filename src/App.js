@@ -9,11 +9,13 @@ import Dont from './components/Distructuring'
 import Events from './components/Events'
 import ParentComponent from './components/ParentComponent'
 import ConditionalRendering from './components/Conditional-Rendering'
+import NameList from './components/NameList'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <NameList />
         <ConditionalRendering />
         <ParentComponent />
         <Myfun />
