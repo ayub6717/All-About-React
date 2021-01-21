@@ -5,6 +5,7 @@ import Tools from './components/Class-component'
 import Props from './components/Props'
 import Message from './components/State'
 import Count from './components/SetState'
+import Dont from './components/Distructuring'
 
 class App extends Component{
   render(){
@@ -28,6 +29,8 @@ class App extends Component{
         </Message>
 
         <Count />
+
+        <Dont name = "Dhaka" area = "Shaymoli"></Dont>
       </div>
     );
   }
