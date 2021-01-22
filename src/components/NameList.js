@@ -23,7 +23,7 @@ function NameList() {
             skill: 'Angular'
         }
     ]
-    const nameList = persons.map(person => <Person person={person} />)
+    const nameList = persons.map(person => <Person key={person.id} person={person} />)
     return (
         <div>
             {
