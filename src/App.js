@@ -15,11 +15,13 @@ import Lifecycle from './components/Lifecycle'
 import ComponentDid from './components/ComponentDidMount'
 import Update from './components/ComponentDidUpdate'
 import Unmount from './components/ComponentWillUnmount'
+import Shouldupdate from './components/ShouldComponentUpdate'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <Shouldupdate />
         <Unmount />
         <Update />
         <ComponentDid />
