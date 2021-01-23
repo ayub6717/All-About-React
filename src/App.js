@@ -13,11 +13,13 @@ import NameList from './components/NameList'
 import Form from './components/Form'
 import Lifecycle from './components/Lifecycle'
 import ComponentDid from './components/ComponentDidMount'
+import Update from './components/ComponentDidUpdate'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <Update />
         <ComponentDid />
         <Lifecycle />
         <Form />
