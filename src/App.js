@@ -11,11 +11,13 @@ import ParentComponent from './components/ParentComponent'
 import ConditionalRendering from './components/Conditional-Rendering'
 import NameList from './components/NameList'
 import Form from './components/Form'
+import Lifecycle from './components/Lifecycle'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <Lifecycle />
         <Form />
         <NameList />
         <ConditionalRendering />
