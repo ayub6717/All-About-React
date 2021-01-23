@@ -14,11 +14,13 @@ import Form from './components/Form'
 import Lifecycle from './components/Lifecycle'
 import ComponentDid from './components/ComponentDidMount'
 import Update from './components/ComponentDidUpdate'
+import Unmount from './components/ComponentWillUnmount'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <Unmount />
         <Update />
         <ComponentDid />
         <Lifecycle />
