@@ -20,6 +20,8 @@ import Frag from './components/Fragment'
 import Header from './components/Divided_Indo_Components/Header'
 import {infoCategory} from './components/Divided_Indo_Components/Info'
 import Newslist from './components/Divided_Indo_Components/Newslist'
+import Pagination from './components/Divided_Indo_Components/Pagination'
+import Loading from './components/Divided_Indo_Components/Loading'
 
 
 const fakeNews = [
@@ -54,7 +56,17 @@ class App extends Component{
           <div className="row">
             <div className="col-sm-6 offset-md-3">
               <Header category={infoCategory.technology} />
+              <div className="d-flex">
+                  <p className='text-black-50 '>
+                    About {0} results found
+                  </p>
+                  <p className='text-black-50 ml-auto'>
+                    {1} page of {100}
+                  </p>
+              </div>
               <Newslist news={fakeNews} />
+              <Pagination />
+              <Loading />
             </div>
           </div>
         </div>
