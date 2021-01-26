@@ -16,11 +16,13 @@ import ComponentDid from './components/ComponentDidMount'
 import Update from './components/ComponentDidUpdate'
 import Unmount from './components/ComponentWillUnmount'
 import Shouldupdate from './components/ShouldComponentUpdate'
+import Frag from './components/Fragment'
 
 class App extends Component{
   render(){
     return (
       <div className="App">
+        <Frag />
         <Shouldupdate />
         <Unmount />
         <Update />
