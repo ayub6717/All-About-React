@@ -17,44 +17,56 @@ import Update from './components/ComponentDidUpdate'
 import Unmount from './components/ComponentWillUnmount'
 import Shouldupdate from './components/ShouldComponentUpdate'
 import Frag from './components/Fragment'
+import Header from './components/Divided_Indo_Components/Header'
+import {infoCategory} from './components/Divided_Indo_Components/Info'
+
 
 class App extends Component{
   render(){
     return (
-      <div className="App">
-        <Frag />
-        <Shouldupdate />
-        <Unmount />
-        <Update />
-        <ComponentDid />
-        <Lifecycle />
-        <Form />
-        <NameList />
-        <ConditionalRendering />
-        <ParentComponent />
-        <Myfun />
-        <Tools />
-        
-        <Props name = "Ayub" email = "ayub@gmail.com">
-          <h4>Hey i'm Front-End developer</h4>
-          <p>Hey i'm Engineer</p>
-        </Props>
-        <Props name = "Rohan" email = "rohan@gmail.com"></Props>
-        <Props name = "Ahmed" email = "ahmed@gmail.com"></Props>
+      <div>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6 offset-md-3">
+              <Header category={infoCategory.technology} />
+            </div>
+          </div>
+        </div>
 
-        <Tools name = "Rohan"></Tools>
+        {/* <div className="App">
+          <Frag />
+          <Shouldupdate />
+          <Unmount />
+          <Update />
+          <ComponentDid />
+          <Lifecycle />
+          <Form />
+          <NameList />
+          <ConditionalRendering />
+          <ParentComponent />
+          <Myfun />
+          <Tools />
+          
+          <Props name = "Ayub" email = "ayub@gmail.com">
+            <h4>Hey i'm Front-End developer</h4>
+            <p>Hey i'm Engineer</p>
+          </Props>
+          <Props name = "Rohan" email = "rohan@gmail.com"></Props>
+          <Props name = "Ahmed" email = "ahmed@gmail.com"></Props>
 
-        <Message />
-        <Message name = "Ha Ha Ha">
-          <h3>Need A Chocolate</h3>
-        </Message>
+          <Tools name = "Rohan"></Tools>
 
-        <Count />
+          <Message />
+          <Message name = "Ha Ha Ha">
+            <h3>Need A Chocolate</h3>
+          </Message>
 
-        <Dont name = "Dhaka" area = "Shaymoli"></Dont>
-        <Events></Events>
-        
-      </div>
+          <Count />
+
+          <Dont name = "Dhaka" area = "Shaymoli"></Dont>
+          <Events></Events>
+        </div>*/}
+        </div> 
     );
   }
 }
