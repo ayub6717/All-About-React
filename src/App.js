@@ -19,7 +19,32 @@ import Shouldupdate from './components/ShouldComponentUpdate'
 import Frag from './components/Fragment'
 import Header from './components/Divided_Indo_Components/Header'
 import {infoCategory} from './components/Divided_Indo_Components/Info'
+import Newslist from './components/Divided_Indo_Components/Newslist'
 
+
+const fakeNews = [
+  {
+    title: 'Title',
+    content: 'Content',
+    url: 'https://ayub6717.netlify.app',
+    urlToImage: 'https://ayub6717.netlify.app',
+    publishedAt: 'published date and time',
+    source: {
+      name: 'CNN'
+    },
+  },
+  {
+    title: 'Title',
+    content: 'Content',
+    url: 'https://ayub6717.netlify.app',
+    urlToImage: 'https://ayub6717.netlify.app',
+    publishedAt: 'published date and time',
+    source: {
+      name: 'CNN'
+    },
+  },
+  
+];
 
 class App extends Component{
   render(){
@@ -29,6 +54,7 @@ class App extends Component{
           <div className="row">
             <div className="col-sm-6 offset-md-3">
               <Header category={infoCategory.technology} />
+              <Newslist news={fakeNews} />
             </div>
           </div>
         </div>
