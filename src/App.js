@@ -1,29 +1,28 @@
 import React,{ Component } from 'react'
 import './App.css'
-import Myfun from './components/Functional-component'
-import Tools from './components/Class-component'
-import Props from './components/Props'
-import Message from './components/State'
-import Count from './components/SetState'
-import Dont from './components/Distructuring'
-import Events from './components/Events'
-import ParentComponent from './components/ParentComponent'
-import ConditionalRendering from './components/Conditional-Rendering'
-import NameList from './components/NameList'
-import Form from './components/Form'
-import Lifecycle from './components/Lifecycle'
-import ComponentDid from './components/ComponentDidMount'
-import Update from './components/ComponentDidUpdate'
-import Unmount from './components/ComponentWillUnmount'
-import Shouldupdate from './components/ShouldComponentUpdate'
-import Frag from './components/Fragment'
+// import Myfun from './components/Functional-component'
+// import Tools from './components/Class-component'
+// import Props from './components/Props'
+// import Message from './components/State'
+// import Count from './components/SetState'
+// import Dont from './components/Distructuring'
+// import Events from './components/Events'
+// import ParentComponent from './components/ParentComponent'
+// import ConditionalRendering from './components/Conditional-Rendering'
+// import NameList from './components/NameList'
+// import Form from './components/Form'
+// import Lifecycle from './components/Lifecycle'
+// import ComponentDid from './components/ComponentDidMount'
+// import Update from './components/ComponentDidUpdate'
+// import Unmount from './components/ComponentWillUnmount'
+// import Shouldupdate from './components/ShouldComponentUpdate'
+// import Frag from './components/Fragment'
 import Header from './components/Divided_Indo_Components/Header'
-import {infoCategory} from './components/Divided_Indo_Components/Info'
+import News, {infoCategory} from './components/Divided_Indo_Components/Info'
 import Newslist from './components/Divided_Indo_Components/Newslist'
 import Pagination from './components/Divided_Indo_Components/Pagination'
 import Loading from './components/Divided_Indo_Components/Loading'
 import axios from 'axios'
-
 
 // const fakeNews = [
 //   {
@@ -75,33 +74,38 @@ class App extends Component{
   }
   
   componentDidMount(){
-    const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
-    axios 
-    .get(url)
-    .then((response)=>{
-      this.setState({
-        news: response.data.articles,
-      });
+    // const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
+    // axios 
+    // .get(url)
+    // .then((response)=>{
+    //   this.setState({
+    //     news: response.data.articles,
+    //   });
+    // })
+    // .catch((e) => {
+    //   console.log(e);
+    // });
+
+    const news = new News(infoCategory.technology);
+    news.getNews().then(data =>{
+      console.log(data);
     })
-    .catch((e) => {
-      console.log(e);
-    });
   }
 
   componentDidUpdate(prevProps, prevState){
-    if(prevState.category !== this.state.category){
-      const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
-      axios 
-      .get(url)
-      .then((response)=>{
-        this.setState({
-          news: response.data.articles,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    }
+    // if(prevState.category !== this.state.category){
+    //   const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
+    //   axios 
+    //   .get(url)
+    //   .then((response)=>{
+    //     this.setState({
+    //       news: response.data.articles,
+    //     });
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+    // }
   }
   render(){
     return (
