@@ -22,8 +22,7 @@ import News, {infoCategory} from './components/Divided_Indo_Components/Info'
 import Newslist from './components/Divided_Indo_Components/Newslist'
 import Pagination from './components/Divided_Indo_Components/Pagination'
 import Loading from './components/Divided_Indo_Components/Loading'
-import axios from 'axios'
-
+// import axios from 'axios'
 // const fakeNews = [
 //   {
 //     title: 'Title',
@@ -62,16 +61,17 @@ import axios from 'axios'
 //   console.log(res);
 // });
 
+const news = new News(infoCategory.technology)
 class App extends Component{
   state = {
-    news: [],
-    category: infoCategory.technology
+    data: {},
+    isLoading: true
   };
 
-  changeCategory = (category) => {
-      console.log(category);
-      this.setState({category});
-  }
+  // changeCategory = (category) => {
+  //     console.log(category);
+  //     this.setState({category});
+  // }
   
   componentDidMount(){
     // const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
@@ -86,27 +86,38 @@ class App extends Component{
     //   console.log(e);
     // });
 
-    const news = new News(infoCategory.technology);
-    news.getNews().then(data =>{
-      console.log(data);
+    // const news = new News(infoCategory.technology);
+    // news.getNews().then(data =>{
+    //   console.log(data);
+    // })
+
+    news.getNews()
+    .then( data => {
+      this.setState({data, isLoading: false})
+    })
+    .catch(e => {
+       console.log(e);
+       alert('something Went Worng')
+       this.setState({isLoading: false})
     })
   }
 
-  componentDidUpdate(prevProps, prevState){
-    // if(prevState.category !== this.state.category){
-    //   const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
-    //   axios 
-    //   .get(url)
-    //   .then((response)=>{
-    //     this.setState({
-    //       news: response.data.articles,
-    //     });
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
-    // }
-  }
+  // componentDidUpdate(prevProps, prevState){
+  //   if(prevState.category !== this.state.category){
+  //     const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
+  //     axios 
+  //     .get(url)
+  //     .then((response)=>{
+  //       this.setState({
+  //         news: response.data.articles,
+  //       });
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  //   }
+  // }
+  
   render(){
     return (
       <div>
@@ -125,9 +136,13 @@ class App extends Component{
                     {1} page of {100}
                   </p>
               </div>
-              <Newslist news={this.state.news} />
+              
+              {this.state.isLoading ? (
+                <Loading />
+              ) : (
+                <Newslist news={this.state.data.article} />
+              )}
               <Pagination />
-              <Loading />
             </div>
           </div>
         </div>
