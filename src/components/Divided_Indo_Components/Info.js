@@ -26,10 +26,12 @@ export default class News {
                 this._totalPage = Math.ceil(data.totalResults / this._pageSize);
                 return{
                     article: data.articles,
+                    isNext: this._isNext(),
+                    isPrevious: this._isPrevious(),
                     totalPage: this._totalPage,
                     currentPage: this._currentPage,
                     category: this._category,
-                    totalResults: data.totalResults
+                    totalResults: data.totalResults,
                 }
         } catch(e) {
             throw new Error(e);
@@ -81,7 +83,7 @@ export default class News {
     }
 
     _isNext() {
-        return this._currentPage < this.totalPage;
+        return this._currentPage < this._totalPage;
     }
 
     _isPrevious() {

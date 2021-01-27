@@ -62,35 +62,13 @@ import Loading from './components/Divided_Indo_Components/Loading'
 // });
 
 const news = new News(infoCategory.technology)
-class App extends Component{
+class App extends React.Component{
   state = {
     data: {},
     isLoading: true
   };
 
-  // changeCategory = (category) => {
-  //     console.log(category);
-  //     this.setState({category});
-  // }
-  
   componentDidMount(){
-    // const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
-    // axios 
-    // .get(url)
-    // .then((response)=>{
-    //   this.setState({
-    //     news: response.data.articles,
-    //   });
-    // })
-    // .catch((e) => {
-    //   console.log(e);
-    // });
-
-    // const news = new News(infoCategory.technology);
-    // news.getNews().then(data =>{
-    //   console.log(data);
-    // })
-
     news.getNews()
     .then( data => {
       this.setState({data, isLoading: false})
@@ -98,27 +76,48 @@ class App extends Component{
     .catch(e => {
        console.log(e);
        alert('something Went Worng')
-       this.setState({isLoading: false})
+       this.setState({isLoading: false});
     })
   }
+  next = () => {
+    if (this.state.data.isNext) {
+      this.setState({isLoading: true})
+    }
+    news.next()
+        .then(data => {
+          this.setState({data, isLoading: false})
+        })
+        .catch( e => {
+          console.log(e);
+          alert('something Went Worng')
+          this.setState({isLoading: false});
+        });
+  }
 
-  // componentDidUpdate(prevProps, prevState){
-  //   if(prevState.category !== this.state.category){
-  //     const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
-  //     axios 
-  //     .get(url)
-  //     .then((response)=>{
-  //       this.setState({
-  //         news: response.data.articles,
-  //       });
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  //   }
-  // }
-  
+  prev = () => {
+    if (this.state.data.isPrevious) {
+      this.setState({isLoading: true})
+    }
+    news.prev()
+        .then(data => {
+          this.setState({data, isLoading: false})
+        })
+        .catch( e => {
+          console.log(e);
+          alert('something Went Worng')
+          this.setState({isLoading: false});
+        });
+  }
   render(){
+    const {
+      article,
+      isPrevious,
+      isNext,
+      category,
+      totalResults,
+      currentPage,
+      totalPage
+    } = this.state.data
     return (
       <div>
         <div className="container">
@@ -140,9 +139,20 @@ class App extends Component{
               {this.state.isLoading ? (
                 <Loading />
               ) : (
-                <Newslist news={this.state.data.article} />
+                <div>
+                  <Newslist news={this.state.data.article} />
+                  <Pagination
+                    next={this.next}
+                    prev={this.prev}
+                    isPrevious={isPrevious}
+                    isNext={isNext}
+                    totalPage={totalPage}
+                    currentPage={currentPage}
+
+                  />
+                </div>
               )}
-              <Pagination />
+              
             </div>
           </div>
         </div>
