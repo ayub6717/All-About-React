@@ -25,56 +25,83 @@ import Loading from './components/Divided_Indo_Components/Loading'
 import axios from 'axios'
 
 
-const fakeNews = [
-  {
-    title: 'Title',
-    content: 'Content',
-    url: 'https://ayub6717.netlify.app',
-    urlToImage: 'https://ayub6717.netlify.app',
-    publishedAt: 'published date and time',
-    source: {
-      name: 'CNN'
-    },
-  },
-  {
-    title: 'Title',
-    content: 'Content',
-    url: 'https://ayub6717.netlify.app',
-    urlToImage: 'https://ayub6717.netlify.app',
-    publishedAt: 'published date and time',
-    source: {
-      name: 'CNN'
-    },
-  },
+// const fakeNews = [
+//   {
+//     title: 'Title',
+//     content: 'Content',
+//     url: 'https://ayub6717.netlify.app',
+//     urlToImage: 'https://ayub6717.netlify.app',
+//     publishedAt: 'published date and time',
+//     source: {
+//       name: 'CNN'
+//     },
+//   },
+//   {
+//     title: 'Title',
+//     content: 'Content',
+//     url: 'https://ayub6717.netlify.app',
+//     urlToImage: 'https://ayub6717.netlify.app',
+//     publishedAt: 'published date and time',
+//     source: {
+//       name: 'CNN'
+//     },
+//   },
   
-];
+// ];
 
-const URL = 'https://jsonplaceholder.typicode.com/users'
-axios.get(URL).then((res)=> {
-  console.log(res.data);
-});
+// const URL = 'https://jsonplaceholder.typicode.com/users'
+// axios.get(URL).then((res)=> {
+//   console.log(res.data);
+// });
 
-const user = {
-  name: 'Ayub',
-  email: 'ayub@',
-  username: 'ayub6717'
-}
-axios.post(URL, user).then((res)=>{
-  console.log(res);
-});
-
+// const user = {
+//   name: 'Ayub',
+//   email: 'ayub@',
+//   username: 'ayub6717'
+// }
+// axios.post(URL, user).then((res)=>{
+//   console.log(res);
+// });
 
 class App extends Component{
+  state = {
+    news: [],
+    category: infoCategory.technology
+  };
+
+  changeCategory = (category) => {
+      console.log(category);
+      this.setState({category});
+  }
+  
   componentDidMount(){
-    const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=technology&pageSize=5`
+    const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
     axios 
     .get(url)
     .then((response)=>{
-      console.log(response)
+      this.setState({
+        news: response.data.articles,
+      });
     })
     .catch((e) => {
       console.log(e);
     });
+  }
+
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.category !== this.state.category){
+      const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=${this.state.category}&pageSize=9`;
+      axios 
+      .get(url)
+      .then((response)=>{
+        this.setState({
+          news: response.data.articles,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+    }
   }
   render(){
     return (
@@ -82,7 +109,10 @@ class App extends Component{
         <div className="container">
           <div className="row">
             <div className="col-sm-6 offset-md-3">
-              <Header category={infoCategory.technology} />
+              <Header 
+                category={this.state.category} 
+                changeCategory={this.changeCategory} 
+              />
               <div className="d-flex">
                   <p className='text-black-50 '>
                     About {0} results found
@@ -91,7 +121,7 @@ class App extends Component{
                     {1} page of {100}
                   </p>
               </div>
-              <Newslist news={fakeNews} />
+              <Newslist news={this.state.news} />
               <Pagination />
               <Loading />
             </div>

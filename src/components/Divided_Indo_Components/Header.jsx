@@ -16,7 +16,7 @@ class Header extends Component {
     };
 
   render() {
-    const {category} = this.props;
+    const {category, changeCategory} = this.props;
     return (
       <div className="my-4">
           <h1 className="mb-4" style={{fontWeight:'300'}}>MD AYUB</h1>
@@ -29,18 +29,28 @@ class Header extends Component {
             onKeyPress = {this.handleKeyPress}
           />
         <div className="my-4">
-          {infoCategory && Object.keys(infoCategory).map(item => {
-            if(category == infoCategory[item]) {
+          {infoCategory && 
+            Object.keys(infoCategory).map(item => {
+            if(category === infoCategory[item]) {
               return (
-                <button className="btn btn-sm btn-warning mr-2 mb-2">
-                  {`${infoCategory[item]}`}
+                <button 
+                  onClick={()=> 
+                    changeCategory(infoCategory[item])
+                } 
+                className="btn btn-sm btn-warning mr-2 mb-2"
+                >
+                  {`#${infoCategory[item]}`}
                 </button>
               );
             }
 
             return(
-              <button className="btn btn-sm btn-light mr-2 mb-2">
-                {`${infoCategory[item]}`}
+              <button 
+                onClick={()=> 
+                  changeCategory(infoCategory[item])
+              } 
+              className="btn btn-sm btn-light mr-2 mb-2">
+                {`#${infoCategory[item]}`}
               </button>
             )
           })}

@@ -58,7 +58,7 @@ const NewsItem = ({item}) => (
 function Newslist({news}) {
     return (
         <div>
-            {news && news.length == 0 && <h4>There is no news</h4> }
+            {news && news.length === 0 && <h4>There is no news</h4> }
             {news && news.map((item) => <NewsItem key={item.title} item={item} />)}
         </div>
     )
