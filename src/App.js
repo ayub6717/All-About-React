@@ -65,6 +65,17 @@ axios.post(URL, user).then((res)=>{
 
 
 class App extends Component{
+  componentDidMount(){
+    const url = `${process.env.REACT_APP_NEWS_URL}?apikey=${process.env.REACT_APP_NEWS_API_KEY}&category=technology&pageSize=5`
+    axios 
+    .get(url)
+    .then((response)=>{
+      console.log(response)
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  }
   render(){
     return (
       <div>
