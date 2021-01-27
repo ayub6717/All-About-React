@@ -22,6 +22,7 @@ import {infoCategory} from './components/Divided_Indo_Components/Info'
 import Newslist from './components/Divided_Indo_Components/Newslist'
 import Pagination from './components/Divided_Indo_Components/Pagination'
 import Loading from './components/Divided_Indo_Components/Loading'
+import axios from 'axios'
 
 
 const fakeNews = [
@@ -47,6 +48,21 @@ const fakeNews = [
   },
   
 ];
+
+const URL = 'https://jsonplaceholder.typicode.com/users'
+axios.get(URL).then((res)=> {
+  console.log(res.data);
+});
+
+const user = {
+  name: 'Ayub',
+  email: 'ayub@',
+  username: 'ayub6717'
+}
+axios.post(URL, user).then((res)=>{
+  console.log(res);
+});
+
 
 class App extends Component{
   render(){
