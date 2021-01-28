@@ -22,6 +22,7 @@ import News, { infoCategory } from "./components/Divided_Indo_Components/Info";
 import Newslist from "./components/Divided_Indo_Components/Newslist";
 import Pagination from "./components/Divided_Indo_Components/Pagination";
 import Loading from "./components/Divided_Indo_Components/Loading";
+import Reftest from "./components/Divided_Indo_Components/Reftest";
 // import axios from 'axios'
 // const fakeNews = [
 //   {
@@ -69,6 +70,7 @@ class App extends React.Component {
   };
 
   aboutResult = React.createRef();
+  jumbotronRef = React.createRef();
   componentDidMount() {
     news
       .getNews()
@@ -80,6 +82,8 @@ class App extends React.Component {
         alert("something Went Worng");
         this.setState({ isLoading: false });
       });
+
+      console.log(this.jumbotronRef);
   }
 
   goToTop = () => {
@@ -217,6 +221,7 @@ class App extends React.Component {
                   </button>
                 </div>
               )}
+              < Reftest ref={this.jumbotronRef} />
             </div>
           </div>
         </div>
