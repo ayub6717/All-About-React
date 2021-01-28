@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import {infoCategory} from './Info'
 class Header extends Component {
     state = {
@@ -12,7 +12,9 @@ class Header extends Component {
     };
 
     handleKeyPress = e => {
-
+      if (e.key === 'Enter'){
+        this.props.search(this.state.searchTerm)
+      }
     };
 
   render() {

@@ -148,6 +148,20 @@ class App extends React.Component {
         this.setState({ isLoading: false });
       });
   };
+
+  search = searchTerm => {
+    this.setState({ isLoading: true });
+    news
+      .search(searchTerm) 
+      .then((data) => {
+        this.setState({ data, isLoading: false });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something Went Worng");
+        this.setState({ isLoading: false });
+      });
+  };
   render() {
     const {
       article,
@@ -166,6 +180,7 @@ class App extends React.Component {
               <Header
                 category={category}
                 changeCategory={this.changeCategory}
+                search={this.search}
               />
               <div className="d-flex">
                 <p className="text-black-50 ">
