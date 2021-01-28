@@ -1,5 +1,5 @@
-import React,{ Component } from 'react'
-import './App.css'
+import React, { Component } from "react";
+import "./App.css";
 // import Myfun from './components/Functional-component'
 // import Tools from './components/Class-component'
 // import Props from './components/Props'
@@ -17,11 +17,11 @@ import './App.css'
 // import Unmount from './components/ComponentWillUnmount'
 // import Shouldupdate from './components/ShouldComponentUpdate'
 // import Frag from './components/Fragment'
-import Header from './components/Divided_Indo_Components/Header'
-import News, {infoCategory} from './components/Divided_Indo_Components/Info'
-import Newslist from './components/Divided_Indo_Components/Newslist'
-import Pagination from './components/Divided_Indo_Components/Pagination'
-import Loading from './components/Divided_Indo_Components/Loading'
+import Header from "./components/Divided_Indo_Components/Header";
+import News, { infoCategory } from "./components/Divided_Indo_Components/Info";
+import Newslist from "./components/Divided_Indo_Components/Newslist";
+import Pagination from "./components/Divided_Indo_Components/Pagination";
+import Loading from "./components/Divided_Indo_Components/Loading";
 // import axios from 'axios'
 // const fakeNews = [
 //   {
@@ -44,7 +44,7 @@ import Loading from './components/Divided_Indo_Components/Loading'
 //       name: 'CNN'
 //     },
 //   },
-  
+
 // ];
 
 // const URL = 'https://jsonplaceholder.typicode.com/users'
@@ -61,54 +61,94 @@ import Loading from './components/Divided_Indo_Components/Loading'
 //   console.log(res);
 // });
 
-const news = new News(infoCategory.technology)
-class App extends React.Component{
+const news = new News(infoCategory.technology);
+class App extends React.Component {
   state = {
     data: {},
-    isLoading: true
+    isLoading: true,
   };
 
-  componentDidMount(){
-    news.getNews()
-    .then( data => {
-      this.setState({data, isLoading: false})
-    })
-    .catch(e => {
-       console.log(e);
-       alert('something Went Worng')
-       this.setState({isLoading: false});
-    })
+  componentDidMount() {
+    news
+      .getNews()
+      .then((data) => {
+        this.setState({ data, isLoading: false });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something Went Worng");
+        this.setState({ isLoading: false });
+      });
   }
   next = () => {
     if (this.state.data.isNext) {
-      this.setState({isLoading: true})
+      this.setState({ isLoading: true });
     }
-    news.next()
-        .then(data => {
-          this.setState({data, isLoading: false})
-        })
-        .catch( e => {
-          console.log(e);
-          alert('something Went Worng')
-          this.setState({isLoading: false});
-        });
-  }
+    news
+      .next()
+      .then((data) => {
+        this.setState({ data, isLoading: false });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something Went Worng");
+        this.setState({ isLoading: false });
+      });
+  };
 
   prev = () => {
     if (this.state.data.isPrevious) {
-      this.setState({isLoading: true})
+      this.setState({ isLoading: true });
     }
-    news.prev()
-        .then(data => {
-          this.setState({data, isLoading: false})
-        })
-        .catch( e => {
-          console.log(e);
-          alert('something Went Worng')
-          this.setState({isLoading: false});
-        });
-  }
-  render(){
+    news
+      .prev()
+      .then((data) => {
+        this.setState({ data, isLoading: false });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something Went Worng");
+        this.setState({ isLoading: false });
+      });
+  };
+
+  handlePageChange = (value) => {
+    this.setState({
+      data: {
+        ...this.state.data,
+        currentPage: Number.parseInt(value),
+      },
+    });
+  };
+
+  goToPage = () => {
+    this.setState({ isLoading: true });
+    news
+      .setCurrentPage(this.state.data.currentPage)
+      .then((data) => {
+        this.setState({ data, isLoading: false });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something Went Worng");
+        this.setState({ isLoading: false });
+      });
+  };
+
+  changeCategory = (category) => {
+    this.setState({ isLoading: true });
+    news
+      .changeCategory(category)
+      .then((data) => {
+        this.setState({ data, isLoading: false });
+      })
+      .catch((e) => {
+        console.log(e);
+        alert("something Went Worng");
+        this.setState({ isLoading: false });
+      });
+  };
+  render() {
     const {
       article,
       isPrevious,
@@ -116,31 +156,31 @@ class App extends React.Component{
       category,
       totalResults,
       currentPage,
-      totalPage
-    } = this.state.data
+      totalPage,
+    } = this.state.data;
     return (
       <div>
         <div className="container">
           <div className="row">
             <div className="col-sm-6 offset-md-3">
-              <Header 
-                category={this.state.category} 
-                changeCategory={this.changeCategory} 
+              <Header
+                category={category}
+                changeCategory={this.changeCategory}
               />
               <div className="d-flex">
-                  <p className='text-black-50 '>
-                    About {0} results found
-                  </p>
-                  <p className='text-black-50 ml-auto'>
-                    {1} page of {100}
-                  </p>
+                <p className="text-black-50 ">
+                  About {totalResults} results found
+                </p>
+                <p className="text-black-50 ml-auto">
+                  {currentPage} page of {totalPage}
+                </p>
               </div>
-              
+
               {this.state.isLoading ? (
                 <Loading />
               ) : (
                 <div>
-                  <Newslist news={this.state.data.article} />
+                  <Newslist news={article} />
                   <Pagination
                     next={this.next}
                     prev={this.prev}
@@ -148,11 +188,11 @@ class App extends React.Component{
                     isNext={isNext}
                     totalPage={totalPage}
                     currentPage={currentPage}
-
+                    handlePageChange={this.handlePageChange}
+                    goToPage={this.goToPage}
                   />
                 </div>
               )}
-              
             </div>
           </div>
         </div>
@@ -190,7 +230,7 @@ class App extends React.Component{
           <Dont name = "Dhaka" area = "Shaymoli"></Dont>
           <Events></Events>
         </div>*/}
-        </div> 
+      </div>
     );
   }
 }
