@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "./App.css";
 // import Myfun from './components/Functional-component'
 // import Tools from './components/Class-component'
@@ -68,6 +68,7 @@ class App extends React.Component {
     isLoading: true,
   };
 
+  aboutResult = React.createRef();
   componentDidMount() {
     news
       .getNews()
@@ -80,6 +81,11 @@ class App extends React.Component {
         this.setState({ isLoading: false });
       });
   }
+
+  goToTop = () => {
+    window.scroll(0, this.aboutResult.current.scrollTop)
+  }
+
   next = () => {
     if (this.state.data.isNext) {
       this.setState({ isLoading: true });
@@ -182,7 +188,7 @@ class App extends React.Component {
                 changeCategory={this.changeCategory}
                 search={this.search}
               />
-              <div className="d-flex">
+              <div ref={this.aboutResult} className="d-flex">
                 <p className="text-black-50 ">
                   About {totalResults} results found
                 </p>
@@ -206,6 +212,9 @@ class App extends React.Component {
                     handlePageChange={this.handlePageChange}
                     goToPage={this.goToPage}
                   />
+                  <button className="btn btn-secondary my-5" onClick={this.goToTop}>
+                    Go To Top
+                  </button>
                 </div>
               )}
             </div>

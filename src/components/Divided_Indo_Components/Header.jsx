@@ -1,9 +1,11 @@
-import React, { Component} from 'react';
+import React, { Component, createRef} from 'react';
 import {infoCategory} from './Info'
 class Header extends Component {
     state = {
         searchTerm: ''
     }
+
+    searchBarRef = createRef()
 
     handleChange = e => {
       this.setState({
@@ -17,12 +19,17 @@ class Header extends Component {
       }
     };
 
+    componentDidMount(){
+      this.searchBarRef.current.focus()
+    }
+
   render() {
     const {category, changeCategory} = this.props;
     return (
       <div className="my-4">
           <h1 className="mb-4" style={{fontWeight:'300'}}>MD AYUB</h1>
           <input 
+            ref= {this.searchBarRef}
             type="search"
             className='form-control'
             placeholder='Typing'
